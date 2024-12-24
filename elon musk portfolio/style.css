@@ -1,11 +1,13 @@
 /* Global Styles */
 :root {
-    --primary-color: #1a1a1a;
-    --secondary-color: #2962ff;
+    --primary-color: #0a0a0a;
+    --secondary-color: #1e88e5;
     --accent-color: #00b4d8;
-    --text-color: #333;
-    --light-gray: #f4f4f4;
+    --text-color: #ffffff;
+    --light-gray: rgba(244, 244, 244, 0.1);
     --white: #ffffff;
+    --gradient-bg: linear-gradient(135deg, #0a0a0a 0%, #1a237e 100%);
+    --card-gradient: linear-gradient(160deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
     --transition: all 0.3s ease-in-out;
 }
 
@@ -19,6 +21,7 @@ body {
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
     color: var(--text-color);
+    background: var(--gradient-bg);
 }
 
 .container {
@@ -29,7 +32,8 @@ body {
 
 /* Header Styles */
 #main-header {
-    background: var(--primary-color);
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(10px);
     color: var(--white);
     padding: 1rem 0;
     position: fixed;
@@ -65,13 +69,14 @@ body {
 /* Showcase Section */
 #showcase {
     background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
-                url('path-to-your-hero-image.jpg') no-repeat center center/cover;
+                url('images/starship-launch.jpg') no-repeat center center/cover;
     height: 100vh;
     color: var(--white);
     display: flex;
     align-items: center;
     text-align: center;
     padding-top: 60px;
+    margin-bottom: 4rem;
 }
 
 #showcase h2 {
@@ -116,16 +121,67 @@ body {
 }
 
 .feature-card {
-    background: var(--white);
+    background: var(--card-gradient);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
     padding: 2rem;
     border-radius: 10px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
     transition: var(--transition);
+}
+
+.feature-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 1rem;
 }
 
 .feature-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Gallery Section */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 4rem 0;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    height: 300px;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+.gallery-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    padding: 1rem;
+    color: var(--white);
+    transform: translateY(100%);
+    transition: var(--transition);
+}
+
+.gallery-item:hover .gallery-overlay {
+    transform: translateY(0);
 }
 
 /* Achievements Section */
@@ -137,14 +193,17 @@ body {
 .achievement-list li {
     margin-bottom: 1rem;
     padding-left: 1rem;
+    color: var(--white);
 }
 
 /* Vision Section */
 .quote {
-    background: var(--light-gray);
+    background: var(--card-gradient);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
     padding: 2rem;
-    border-left: 5px solid var(--secondary-color);
     margin: 2rem 0;
+    border-left: 5px solid var(--secondary-color);
 }
 
 blockquote {
@@ -154,7 +213,9 @@ blockquote {
 
 /* Sidebar */
 #sidebar {
-    background: var(--light-gray);
+    background: var(--card-gradient);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
     padding: 2rem;
     border-radius: 10px;
 }
@@ -165,14 +226,15 @@ blockquote {
 
 .news-list li {
     padding: 0.5rem 0;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
 /* Footer */
 #main-footer {
-    background: var(--primary-color);
+    background: rgba(10, 10, 10, 0.95);
     color: var(--white);
     padding: 4rem 0 2rem;
+    margin-top: 4rem;
 }
 
 .footer-grid {
@@ -222,6 +284,23 @@ blockquote {
     border-top: 1px solid rgba(255,255,255,0.1);
 }
 
+/* Mobile Menu */
+.mobile-menu {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.mobile-menu span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: var(--white);
+    margin: 5px 0;
+    transition: var(--transition);
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .grid {
@@ -243,6 +322,10 @@ blockquote {
     .lead {
         font-size: 1.2rem;
     }
+
+    .gallery {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* Animations */
@@ -257,6 +340,19 @@ blockquote {
     }
 }
 
-.feature-card, .achievement-list li, .quote {
+.feature-card, .achievement-list li, .quote, .gallery-item {
     animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Section Headers */
+section h2 {
+    color: var(--white);
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+/* Hover Effects */
+.feature-card, .gallery-item, .cta-button {
+    cursor: pointer;
 }
