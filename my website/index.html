@@ -1,46 +1,74 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Website</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <!-- Add Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header id="main-header">
         <div class="container">
             <h1>Welcome to My Website</h1>
+            <nav id="navbar">
+                <button class="mobile-menu" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul>
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contacts</a></li>
+                    <li><a href="#">Sponsors</a></li>
+                    <li><a href="#">Contribute</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
 
-    <nav id="navbar">
-        <div class="container">
-            <ul>
-                <li><a href='#'>HOME</a></li>
-                <li><a href='#'>ABOUT</a></li>
-                <li><a href='#'>CONTACTS</a></li>
-                <li><a href='#'>SPONSERS</a></li>
-                <li><a href='#'>CONTRIBUTE</a></li>
-            </ul>
-        </div>
-    </nav>
-
     <section id="showcase">
         <div class="container">
-            <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia eveniet, beatae facere nemo maiores eius exercitationem! Animi aut cumque omnis quia facere, est dolor sequi, beatae nihil placeat provident exercitationem!</h1>
+            <h2>Your Journey Starts Here</h2>
+            <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia eveniet, beatae facere nemo maiores eius exercitationem!</p>
+            <a href="#" class="cta-button">Get Started</a>
         </div>
     </section>
 
-    <div class="container">
+    <main class="container grid">
         <section id="main">
-            <h1>Welcome</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia eveniet, beatae facere nemo maiores eius exercitationem! Animi aut cumque omnis quia facere, est dolor sequi, beatae nihil placeat provident exercitationem!</p>
+            <h2>Welcome</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia eveniet, beatae facere nemo maiores eius exercitationem!</p>
+            <div class="features">
+                <div class="feature-card">
+                    <h3>Feature 1</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Feature 2</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                </div>
+            </div>
         </section>
         <aside id="sidebar">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia eveniet, beatae facere nemo maiores eius exercitationem! Animi aut cumque omnis quia facere, est dolor sequi, beatae nihil placeat provident exercitationem!</p>
+            <div class="sidebar-widget">
+                <h3>Latest Updates</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            </div>
         </aside>
-    </div>
+    </main>
 
     <footer id="main-footer">
-        <p> Copywrite &copy; 2019, My Website </p>
+        <div class="container">
+            <p>&copy; 2024 My Website. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#" aria-label="Facebook">FB</a>
+                <a href="#" aria-label="Twitter">TW</a>
+                <a href="#" aria-label="Instagram">IG</a>
+            </div>
+        </div>
     </footer>
 </body>
 </html>
