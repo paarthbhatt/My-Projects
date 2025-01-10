@@ -17,35 +17,6 @@ A collection of beginner-friendly tutorial projects built using HTML, CSS, and J
 
 This repository contains various small projects aimed at teaching fundamental concepts of web development. Each project focuses on specific features or techniques, such as styling, interactivity, or working with DOM elements. These projects are suitable for beginners looking to build a strong foundation in HTML, CSS, and JavaScript.
 
-## Projects Included
-
-1. **To-Do List**
-   - A simple app to add, remove, and mark tasks as completed.
-   - Demonstrates DOM manipulation and local storage.
-
-2. **Weather App**
-   - A basic weather app using a public API.
-   - Covers API integration and asynchronous JavaScript.
-
-3. **Responsive Portfolio Website**
-   - A personal portfolio template.
-   - Focuses on responsive design with CSS Flexbox and Grid.
-
-4. **Calculator**
-   - A functional calculator with basic arithmetic operations.
-   - Explains event handling and state management in vanilla JavaScript.
-
-5. **Image Slider**
-   - An interactive image carousel.
-   - Introduces transitions and animations.
-
-6. **Countdown Timer**
-   - A countdown timer for upcoming events.
-   - Highlights the use of date and time functions.
-
-7. **Modal Popup**
-   - A project showcasing modal popups.
-   - Demonstrates event listeners and overlay techniques.
 
 ## Installation
 
