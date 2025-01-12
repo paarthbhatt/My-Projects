@@ -17,6 +17,8 @@ A collection of beginner-friendly tutorial projects built using HTML, CSS, and J
 
 This repository contains various small projects aimed at teaching fundamental concepts of web development. Each project focuses on specific features or techniques, such as styling, interactivity, or working with DOM elements. These projects are suitable for beginners looking to build a strong foundation in HTML, CSS, and JavaScript.
 
+-Elon Musk Portfolio
+-Sample Website
 
 ## Installation
 
