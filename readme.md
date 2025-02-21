@@ -85,5 +85,3 @@ Contributions are welcome! If you have ideas for new tutorial projects or improv
 This repository is licensed under the [MIT License](LICENSE).
 
 ---
-
-Happy coding and learning!
