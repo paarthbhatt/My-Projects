@@ -5,7 +5,6 @@ A collection of beginner-friendly tutorial projects built using HTML, CSS, and J
 ## Table of Contents
 
 - [Overview](#overview)
-- [Projects Included](#projects-included)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Technologies Used](#technologies-used)
