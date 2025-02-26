@@ -1,4 +1,4 @@
-# Tutorial Projects
+# My Projects
 
 A collection of beginner-friendly tutorial projects built using HTML, CSS, and JavaScript, C++ and React. These projects are part of a project-based learning approach to enhance frontend development skills by working on real-world examples.
 
