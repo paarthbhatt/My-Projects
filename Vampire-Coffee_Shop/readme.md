@@ -16,7 +16,7 @@ Welcome to the Vampire Coffee Shop project! This project is part of the `My-Proj
 ## Introduction
 
 The Vampire Coffee Shop is a web-based project that showcases a fictional coffee shop with a vampire theme. This project demonstrates the use of HTML, CSS, and JavaScript to create an interactive and visually appealing website.
-
+You can access the website through: 
 ## Technologies Used
 
 - HTML (47.2%)
