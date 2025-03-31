@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500;600&display=swap');
+@import 'swiper/css';
+@import 'swiper/css/effect-fade';
+@import 'swiper/css/pagination';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-black font-sans;
+}
+
+.font-serif {
+  font-family: 'Playfair Display', serif;
+}
+
+.font-sans {
+  font-family: 'Lato', sans-serif;
+}
+
+.nav-link {
+  @apply text-gray-300 hover:text-red-500 transition-colors duration-200 relative;
+}
+
+.nav-link::after {
+  content: '';
+  @apply absolute left-0 bottom-0 w-0 h-0.5 bg-vampire-red transition-all duration-300;
+}
+
+.nav-link:hover::after {
+  @apply w-full;
+}
+
+.menu-item {
+  @apply border-b border-red-900/20 pb-2 mb-2 last:border-0 last:mb-0 last:pb-0 transition-all duration-300 hover:border-vampire-red/40;
+}
+
+.btn-primary {
+  @apply bg-vampire-red text-white px-8 py-3 rounded-sm hover:bg-red-800 transition-all duration-300 
+         inline-flex items-center relative overflow-hidden shadow-lg hover:shadow-vampire-red/20;
+}
+
+.btn-primary::before {
+  content: '';
+  @apply absolute inset-0 bg-white/10 transform -translate-x-full skew-x-12 transition-transform duration-700;
+}
+
+.btn-primary:hover::before {
+  @apply translate-x-full;
+}
+
+.section-title {
+  @apply text-5xl font-serif text-vampire-red text-center mb-16 relative;
+}
+
+.section-title::after {
+  content: '';
+  @apply absolute bottom-0 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-vampire-red/30;
+}
+
+.footer-link {
+  @apply hover:text-vampire-red transition-colors duration-200;
+}
+
+/* Custom Animations */
+@keyframes blood-drip {
+  0% {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+.blood-drip {
+  animation: blood-drip 1.5s ease-in-out;
+  transform-origin: top;
+}
+
+/* Swiper Custom Styles */
+.swiper-pagination-bullet {
+  @apply bg-vampire-red/50 !important;
+}
+
+.swiper-pagination-bullet-active {
+  @apply bg-vampire-red !important;
+}
+
+/* Responsive Typography */
+@media (max-width: 768px) {
+  .section-title {
+    @apply text-4xl;
+  }
+  h1 {
+    @apply text-5xl;
+  }
+  h2 {
+    @apply text-3xl;
+  }
+  h3 {
+    @apply text-2xl;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-title {
+    @apply text-3xl;
+  }
+  h1 {
+    @apply text-4xl;
+  }
+  h2 {
+    @apply text-2xl;
+  }
+  h3 {
+    @apply text-xl;
+  }
+}
