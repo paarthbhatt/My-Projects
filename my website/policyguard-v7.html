@@ -2873,9 +2873,8 @@
           <input type="text" placeholder="Search records, rules...">
         </div>
         <div style="display:flex;align-items:center;gap:6px;background:rgba(15,30,58,0.7);border:1px solid rgba(245,158,11,0.3);border-radius:8px;padding:4px 10px">
-          <span style="font-size:10px;color:var(--yellow);font-family:'JetBrains Mono',monospace">🔑 Gemini</span>
-          <input type="password" id="geminiKey" placeholder="Paste API key..." style="background:transparent;border:none;outline:none;color:var(--text);font-size:11px;font-family:'JetBrains Mono',monospace;width:160px" oninput="saveKey(this.value)">
-          <span id="keyStatus" style="font-size:10px;color:var(--muted);font-family:'JetBrains Mono',monospace">—</span>
+          <span style="font-size:10px;color:var(--yellow);font-family:'JetBrains Mono',monospace">🔑 ORAI</span>
+          <input type="password" id="api-key-input" placeholder="Enter ORAI key..." style="background:transparent;border:none;outline:none;color:var(--text);font-size:11px;font-family:'JetBrains Mono',monospace;width:160px" oninput="localStorage.setItem('or_api_key', this.value.trim())">
         </div>
         <div class="icon-btn">
           <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -3591,10 +3590,10 @@
           </div>
           <div style="padding:16px 18px">
             <div class="ai-box" id="aiSummaryBox" style="display:none">
-              <div class="ai-lbl"><div class="ai-lbl-dot"></div>Gemini AI — Compliance Status Report</div>
+              <div class="ai-lbl"><div class="ai-lbl-dot"></div>ORAI Compliance Status Report</div>
               <div class="ai-txt" id="aiSummaryTxt" style="min-height:80px"></div>
             </div>
-            <div id="aiSummaryPlaceholder" style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;text-align:center;padding:20px">Click "Generate Summary" to get a Gemini AI narrative of your current compliance status, trends, and top recommended actions.</div>
+            <div id="aiSummaryPlaceholder" style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;text-align:center;padding:20px">Click "Generate Summary" to get an ORAI narrative of your current compliance status, trends, and top recommended actions.</div>
           </div>
         </div>
 
@@ -3625,7 +3624,7 @@
             </table>
           </div>
           <div class="ai-box" id="dbAiReport" style="display:none;margin:0 16px 16px">
-            <div class="ai-lbl"><div class="ai-lbl-dot"></div>Gemini AI — Database Compliance Analysis</div>
+            <div class="ai-lbl"><div class="ai-lbl-dot"></div>ORAI Database Compliance Analysis</div>
             <div class="ai-txt" id="dbAiReportTxt"></div>
           </div>
         </div>
@@ -3754,12 +3753,12 @@
         <!-- Section: AI Integration -->
         <div class="sec-title">🤖 AI Integration</div>
         <div class="card" style="margin-bottom:18px">
-          <div class="ch"><div class="ct">Gemini API Configuration</div><span id="sett-key-status" style="font-size:12px;font-family:'JetBrains Mono',monospace;color:var(--muted)">—</span></div>
+          <div class="ch"><div class="ct">OpenRouter API Configuration</div><span id="sett-key-status" style="font-size:12px;font-family:'JetBrains Mono',monospace;color:var(--muted)">—</span></div>
           <div style="padding:16px 18px;display:flex;flex-direction:column;gap:14px">
             <div>
-              <div style="font-size:11px;color:var(--text2);font-family:'JetBrains Mono',monospace;margin-bottom:6px">API Key <span style="color:var(--muted)">(stored locally, never transmitted)</span></div>
+              <div style="font-size:11px;color:var(--text2);font-family:'JetBrains Mono',monospace;margin-bottom:6px">API Key <span style="color:var(--muted)">(OpenRouter free tier)</span></div>
               <div style="display:flex;gap:10px;align-items:center">
-                <input type="password" id="sett-api-key" class="fi-inp" style="flex:1" placeholder="AIza..." oninput="settUpdateKey(this.value)">
+                <input type="password" id="sett-api-key" class="fi-inp" style="flex:1" placeholder="or_..." oninput="settUpdateKey(this.value)">
                 <button class="gdg-btn" onclick="settTestKey()">Test Connection</button>
                 <button class="gdg-btn" style="color:var(--red);border-color:rgba(239,68,68,0.3)" onclick="settClearKey()">Clear</button>
               </div>
@@ -3768,9 +3767,9 @@
               <div>
                 <div style="font-size:11px;color:var(--text2);font-family:'JetBrains Mono',monospace;margin-bottom:6px">Model</div>
                 <select id="sett-model" class="fi-inp" style="width:200px;cursor:pointer">
-                  <option value="gemini-2.0-flash" selected>gemini-2.0-flash (default)</option>
-                  <option value="gemini-1.5-pro">gemini-1.5-pro</option>
-                  <option value="gemini-1.5-flash">gemini-1.5-flash</option>
+                  <option value="mistralai/mistral-small:free" selected>Mistral Small 24B (free)</option>
+                  <option value="openai/gpt-4o-mini:free">GPT-4o Mini (free)</option>
+                  <option value="meta-llama/llama-3-8b-instruct:free">Llama 3 8B (free)</option>
                 </select>
               </div>
               <div>
@@ -4048,17 +4047,17 @@
     </div>
   </div>
 
-  <!-- ── AI SCAN MODAL (Claude API) ── -->
+  <!-- ── AI SCAN MODAL (ORAI API) ── -->
   <div class="overlay" id="aiScanOverlay" onclick="if(event.target===this)closeAIScan()">
     <div class="modal" style="max-width:640px">
       <div class="mh">
-        <div class="mt"><span>🤖</span> AI Policy Analysis — Claude</div>
+        <div class="mt"><span>🤖</span> AI Policy Analysis — ORAI</div>
         <div class="mcl" onclick="closeAIScan()">✕</div>
       </div>
       <div class="mb">
         <div style="font-size:12px;color:var(--text2);margin-bottom:10px;font-family:'JetBrains Mono',monospace">Analyzing uploaded document against 170 loaded policy rules...</div>
         <div class="ai-box" id="aiScanBox">
-          <div class="ai-lbl"><div class="ai-lbl-dot"></div>Claude AI Analysis</div>
+          <div class="ai-lbl"><div class="ai-lbl-dot"></div>ORAI AI Analysis</div>
           <div class="ai-txt" id="aiScanTxt" style="min-height:120px">
             <span class="tw-cursor"></span>
           </div>
@@ -4119,7 +4118,7 @@
         </div>
         <!-- AI diagnosis -->
         <div class="ai-box" id="af-diagnosis-box" style="margin-bottom:14px">
-          <div class="ai-lbl"><div class="ai-lbl-dot"></div>Gemini AI — Root Cause Analysis & Fix Plan</div>
+          <div class="ai-lbl"><div class="ai-lbl-dot"></div>ORAI — Root Cause Analysis & Fix Plan</div>
           <div class="ai-txt" id="af-diagnosis" style="min-height:60px"><span class="tw-cursor"></span></div>
         </div>
         <!-- Terminal output -->
@@ -4151,7 +4150,7 @@
       <div class="chat-header-close" onclick="toggleChat()">✕</div>
     </div>
     <div class="chat-messages" id="chatMessages">
-      <div class="chat-msg bot">👋 Hi! I'm your <strong>AI Compliance Assistant</strong> powered by Claude.<br><br>Ask me anything about your violations, policy rules, or remediation steps.</div>
+      <div class="chat-msg bot">👋 Hi! I'm your <strong>AI Compliance Assistant</strong> powered by OpenRouter.<br><br>Ask me anything about your violations, policy rules, or remediation steps.</div>
     </div>
     <div class="chat-quick" id="chatQuick">
       <button class="chat-quick-btn" onclick="quickAsk('Summarize the most critical violations')">🔴 Critical violations?</button>
@@ -4169,43 +4168,45 @@
   <div class="toast" id="toast"></div>
 
   <script>
-    /* ── GEMINI API HELPER ── */
-    let _geminiKey = localStorage.getItem('pp_gemini_key') || '';
-    if (_geminiKey) { setTimeout(() => { const el = document.getElementById('geminiKey'); if(el) el.value = _geminiKey; document.getElementById('keyStatus').textContent = '✓'; document.getElementById('keyStatus').style.color = 'var(--green)'; }, 200); }
+    /* ── OPENROUTER CONFIG ── */
+    const OPENROUTER_API_KEY = localStorage.getItem('or_api_key') || '';
+    const OPENROUTER_MODEL = localStorage.getItem('or_model') || 'mistralai/mistral-small:free';
 
-    function saveKey(v) {
-      _geminiKey = v.trim();
-      localStorage.setItem('pp_gemini_key', _geminiKey);
-      const s = document.getElementById('keyStatus');
-      if (_geminiKey.length > 10) { s.textContent = '✓'; s.style.color = 'var(--green)'; }
-      else { s.textContent = '—'; s.style.color = 'var(--muted)'; }
-    }
-
-    async function callGemini(prompt, systemCtx) {
-      if (!_geminiKey) throw new Error('NO_KEY');
-      const GEMINI_MODEL = 'gemini-2.0-flash';
-      const url = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${_geminiKey}`;
+    async function callOpenRouter(prompt, systemCtx = '', maxTokens = 1500, temperature = 0.4) {
+      if (!OPENROUTER_API_KEY) throw new Error('NO_KEY');
+      const url = 'https://openrouter.ai/api/v1/chat/completions';
       const body = {
-        contents: [{ role: 'user', parts: [{ text: (systemCtx ? systemCtx + '\n\n' : '') + prompt }] }],
-        generationConfig: { maxOutputTokens: 1500, temperature: 0.4 }
+        model: OPENROUTER_MODEL,
+        messages: [
+          { role: 'system', content: systemCtx || 'You are PolicyPilot AI, a compliance analysis assistant. Be direct, concise, and cite specific policy clauses when relevant.' },
+          { role: 'user', content: prompt }
+        ],
+        temperature: temperature,
+        max_tokens: maxTokens
       };
-      const res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
-      if (!res.ok) { const e = await res.json(); throw new Error(e?.error?.message || 'Gemini API error'); }
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${OPENROUTER_API_KEY}` },
+        body: JSON.stringify(body)
+      });
+      if (!res.ok) { const e = await res.json(); throw new Error(e?.error?.message || 'OpenRouter API error'); }
       const data = await res.json();
-      return data.candidates?.[0]?.content?.parts?.map(p => p.text || '').join('') || '';
+      return data.choices?.[0]?.message?.content?.trim() || '';
     }
 
-    async function callGeminiChat(messages, systemCtx) {
-      if (!_geminiKey) throw new Error('NO_KEY');
-      const GEMINI_MODEL = 'gemini-2.0-flash';
-      const url = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${_geminiKey}`;
-      const contents = messages.map(m => ({ role: m.role === 'assistant' ? 'model' : 'user', parts: [{ text: m.content }] }));
-      if (systemCtx && contents.length > 0) contents[0].parts[0].text = systemCtx + '\n\n' + contents[0].parts[0].text;
-      const body = { contents, generationConfig: { maxOutputTokens: 1500, temperature: 0.5 } };
-      const res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
-      if (!res.ok) { const e = await res.json(); throw new Error(e?.error?.message || 'Gemini API error'); }
+    async function callOpenRouterChat(messages, systemCtx = '', maxTokens = 1500, temperature = 0.5) {
+      if (!OPENROUTER_API_KEY) throw new Error('NO_KEY');
+      const url = 'https://openrouter.ai/api/v1/chat/completions';
+      const msgs = [{ role: 'system', content: systemCtx || 'You are PolicyPilot AI, a compliance analysis assistant.' }, ...messages];
+      const body = { model: OPENROUTER_MODEL, messages: msgs, temperature: temperature, max_tokens: maxTokens };
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${OPENROUTER_API_KEY}` },
+        body: JSON.stringify(body)
+      });
+      if (!res.ok) { const e = await res.json(); throw new Error(e?.error?.message || 'OpenRouter API error'); }
       const data = await res.json();
-      return data.candidates?.[0]?.content?.parts?.map(p => p.text || '').join('') || '';
+      return data.choices?.[0]?.message?.content?.trim() || '';
     }
 
     /* ── BOILERPLATE TYPEWRITER ANIMATOR ── */
@@ -4501,9 +4502,9 @@ Keep response under 250 words. Be analytical and data-driven.`;
         // Try to get AI analysis
         let analysis = '';
         try {
-          analysis = await callGemini(finalAnalysisPrompt, 600);
+          analysis = await callOpenRouter(finalAnalysisPrompt, '', 600, 0.5);
         } catch(e) {
-          console.error('[PolicyPilot] Gemini War Room analysis unavailable:', e?.message);
+          console.error('[PolicyPilot] OpenRouter War Room analysis unavailable:', e?.message);
           // Fallback analysis
           const fallbackAnalyses = [
             `Red Team employed aggressive query obfuscation tactics including CSV export bypass and NULL injection attempts. Blue Team maintained 100% blocking rate. GDPR-12a retention policy shows no bypass vulnerabilities. Recommend: Continue quarterly policy stress testing.`,
@@ -4523,7 +4524,7 @@ Keep response under 250 words. Be analytical and data-driven.`;
             <div style="text-align:center">
               <div style="font-size:48px;margin-bottom:16px">🛡️⚔️</div>
               <div style="font-size:24px;font-weight:700;color:var(--cyan);margin-bottom:10px">Simulation Complete</div>
-              <div style="font-size:14px;color:var(--text2)">Final Analysis Generated by Gemini AI</div>
+              <div style="font-size:14px;color:var(--text2)">Final Analysis Generated by OpenRouter AI</div>
             </div>
             <div style="width:100%;max-width:700px;background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);border-radius:12px;padding:20px">
               <div style="font-size:13px;font-weight:600;color:var(--green);margin-bottom:12px">AI Analysis Summary</div>
@@ -4605,7 +4606,7 @@ Respond as the Blue Team Defender:
 Keep response under 80 words. Be analytical and cite policy numbers precisely.`;
 
       try {
-        const blueResponse = await callGemini(bluePrompt, 300);
+        const blueResponse = await callOpenRouter(bluePrompt, '', 300, 0.3);
         const blueEntry = document.createElement('div');
         blueEntry.className = 'war-turn';
         blueEntry.innerHTML = `
@@ -4662,7 +4663,7 @@ Keep response under 80 words. Be analytical and cite policy numbers precisely.`;
       // Reset countdown
       resetCountdown();
 
-      // Call Claude AI for dynamic analysis
+      // Call ORAI AI for dynamic analysis
       try {
         const mockData = `Database scan context:
 - compliance_db (PostgreSQL): customers(12480 rows), transactions(89341 rows), audit_trail(18209 rows), user_logs(234901 rows)
@@ -4674,7 +4675,9 @@ Sample violations found:
 - C9872: PII in unencrypted CSV
 - AUD-019: 4h audit gap 02:00-06:00 UTC`;
 
-        const summary = await callGemini(`You are a compliance scanning AI. Given this database scan context, provide a concise scan summary in 3-4 sentences: total violations found, which policies were most violated, the most critical finding, and a recommended immediate action. Be direct and specific.\n\n${mockData}`);
+        const summary = await callOpenRouter(`You are a compliance scanning AI. Given this database scan context, provide a concise scan summary in 3-4 sentences: total violations found, which policies were most violated, the most critical finding, and a recommended immediate action. Be direct and specific.
+
+${mockData}`, '', 500, 0.2);
 
         // Insert into activity log
         const al = document.getElementById('actLog');
@@ -4682,7 +4685,7 @@ Sample violations found:
         const ts = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
         const ni = document.createElement('div');
         ni.className = 'act-item';
-        ni.innerHTML = `<div class="act-time">${ts}</div><div class="act-dot" style="background:var(--cyan);box-shadow:0 0 6px var(--cyan)"></div><div class="act-txt"><strong>🤖 AI Scan Summary:</strong> ${summary.slice(0,180)}...</div>`;
+        ni.innerHTML = `<div class="act-time">${ts}</div><div class="act-dot" style="background:var(--cyan);box-shadow:0 0 6px var(--cyan)"></div><div class="act-txt"><strong>🤖 ORAI Scan Summary:</strong> ${summary.slice(0,180)}...</div>`;
         al.insertBefore(ni, al.firstChild);
 
         const ni2 = document.createElement('div');
@@ -4690,9 +4693,9 @@ Sample violations found:
         ni2.innerHTML = `<div class="act-time">${ts}</div><div class="act-dot" style="background:var(--green);box-shadow:0 0 6px var(--green)"></div><div class="act-txt">Scan complete: <strong>12,480 records</strong> checked across 6 tables</div>`;
         al.insertBefore(ni2, al.firstChild);
 
-        showToast('✓ AI Scan complete — 12,480 records · 17 violations · Gemini analysis ready', 'var(--green)');
+        showToast('✓ AI Scan complete — 12,480 records · 17 violations · ORAI analysis ready', 'var(--green)');
       } catch(e) {
-        console.error('[PolicyPilot] Gemini scan summary unavailable, using local summary:', e?.message);
+        console.error('[PolicyPilot] OpenRouter scan summary unavailable, using local summary:', e?.message);
         const al = document.getElementById('actLog');
         const now = new Date();
         const ts = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
@@ -4740,9 +4743,22 @@ Sample violations found:
 
     async function tryEnhanceWithAI(id, en, dt, st, pl, rk, baseTxt, el) {
       try {
-        const aiText = await callGemini(`You are a compliance AI. A violation was detected:\n- Record: ${id} (${en})\n- Last Transaction: ${dt}\n- Status: ${st}\n- Violated Policy: ${pl}\n- Risk: ${rk}\n- Initial Analysis: ${baseTxt}\n\nProvide: 1) Confirm/expand the violation analysis in 2 sentences. 2) List exactly 3 specific remediation steps with timeline. 3) Regulatory consequence if unaddressed. Be concise and direct.`);
+        const aiText = await callOpenRouter(`You are a compliance AI. A violation was detected:
+- Record: ${id} (${en})
+- Last Transaction: ${dt}
+- Status: ${st}
+- Violated Policy: ${pl}
+- Risk: ${rk}
+- Initial Analysis: ${baseTxt}
+
+Provide:
+1. Confirm/expand the violation analysis in 2 sentences
+2. List exactly 3 specific remediation steps with timeline
+3. Regulatory consequence if unaddressed
+
+Be concise and direct.`);
         if (aiText) {
-          el.innerHTML = baseTxt + '<br><br><strong style="color:var(--cyan);font-size:11px">━━ GEMINI AI ENHANCED ANALYSIS ━━</strong><br>' + aiText.replace(/\n/g, '<br>');
+          el.innerHTML = baseTxt + '<br><br><strong style="color:var(--cyan);font-size:11px">━━ ORAI ENHANCED ANALYSIS ━━</strong><br>' + aiText.replace(/\n/g, '<br>');
         }
       } catch(e) {
         // Fallback: generate realistic-looking enhanced analysis from static data
@@ -4758,11 +4774,11 @@ Sample violations found:
         };
         const policyKey = Object.keys(policyRemediation).find(k => pl && pl.includes(k)) || 'GDPR-12a';
         const rem = policyRemediation[policyKey] || policyRemediation['GDPR-12a'];
-        const enhanced = `<br><br><strong style="color:var(--cyan);font-size:11px">━━ GEMINI AI ENHANCED ANALYSIS ━━</strong><br><br>` +
+        const enhanced = `<br><br><strong style="color:var(--cyan);font-size:11px">━━ ORAI AI ENHANCED ANALYSIS ━━</strong><br><br>` +
           `<strong>Violation Confirmed:</strong> Record ${id} (${en}) is in breach of ${pl}. The ${rk} risk classification is appropriate given the severity and regulatory exposure.<br><br>` +
           `<strong>Remediation Steps:</strong><br>${rem.steps.join('<br>')}<br><br>` +
           `<strong>Regulatory Consequence:</strong> ${rem.consequence}`;
-        console.error('[PolicyPilot] Gemini AI enhancement unavailable, using local analysis:', e?.message);
+        console.error('[PolicyPilot] ORAI enhancement unavailable, using local analysis:', e?.message);
         // Set base text first, then animate the AI enhancement section below it
         el.innerHTML = baseTxt;
         const enhDiv = document.createElement('span');
@@ -4990,9 +5006,9 @@ Sample violations found:
     function initSettingsPage() {
       // Sync API key field with current key
       const keyEl = document.getElementById('sett-api-key');
-      if (keyEl && _geminiKey) {
-        keyEl.value = _geminiKey;
-        updateSettKeyStatus(_geminiKey);
+      if (keyEl && OPENROUTER_API_KEY) {
+        keyEl.value = OPENROUTER_API_KEY;
+        updateSettKeyStatus(OPENROUTER_API_KEY);
       }
       renderSettNotifs();
       renderSettAuditLog();
@@ -5009,14 +5025,9 @@ Sample violations found:
     }
 
     function settUpdateKey(v) {
-      _geminiKey = v.trim();
-      localStorage.setItem('pp_gemini_key', _geminiKey);
-      updateSettKeyStatus(_geminiKey);
-      // Also sync topbar key input
-      const top = document.getElementById('geminiKey');
-      if (top) top.value = _geminiKey;
-      const ks = document.getElementById('keyStatus');
-      if (ks) { ks.textContent = _geminiKey.length > 10 ? '✓' : '—'; ks.style.color = _geminiKey.length > 10 ? 'var(--green)' : 'var(--muted)'; }
+      const key = v.trim();
+      localStorage.setItem('or_api_key', key);
+      updateSettKeyStatus(key);
     }
 
     async function settTestKey() {
@@ -5024,20 +5035,20 @@ Sample violations found:
       res.style.display = 'block';
       res.style.borderColor = 'var(--border2)';
       res.style.color = 'var(--text2)';
-      res.textContent = '⏳ Testing connection to Gemini API...';
+      res.textContent = '⏳ Testing connection to OpenRouter API...';
       try {
-        const reply = await callGemini('Reply with exactly: "PolicyPilot connection verified." and nothing else.');
+        const reply = await callOpenRouter('Reply with exactly: "PolicyPilot connection verified." and nothing else.', '', 50, 0.1);
         res.textContent = '✓ ' + (reply.trim() || 'Connection successful');
         res.style.color = 'var(--green)';
         res.style.borderColor = 'rgba(16,185,129,0.3)';
-        logSettAudit('API key test — connection successful');
-        showToast('✓ Gemini API connection verified', 'var(--green)');
+        logSettAudit('OpenRouter API key test — connection successful');
+        showToast('✓ OpenRouter API connection verified', 'var(--green)');
       } catch(e) {
         console.error('[PolicyPilot Settings] API test failed:', e?.message);
         res.textContent = '✕ Connection failed — check your API key and network access';
         res.style.color = 'var(--red)';
         res.style.borderColor = 'rgba(239,68,68,0.3)';
-        logSettAudit('API key test — failed');
+        logSettAudit('OpenRouter API key test — failed');
         showToast('✕ API test failed — see console for details', 'var(--red)');
       }
     }
@@ -5164,11 +5175,15 @@ Sample violations found:
 
     function resetAllSettings() {
       if (!confirm('⚠ Factory reset ALL settings? This will clear your API key and all preferences.')) return;
-      localStorage.removeItem('pp_gemini_key');
+      localStorage.removeItem('or_api_key');
+      localStorage.removeItem('or_model');
       localStorage.removeItem('pp_profile');
       localStorage.removeItem('pp_notifs');
       localStorage.removeItem('pp_thresholds');
-      _geminiKey = '';
+      localStorage.removeItem('pp_scans');
+      localStorage.removeItem('pp_violations');
+      localStorage.removeItem('pp_audit_log');
+      localStorage.removeItem('pp_databases');
       document.getElementById('sett-api-key').value = '';
       document.getElementById('sett-name').value = 'Parth Bhatt';
       document.getElementById('sett-role').value = 'Compliance Officer';
@@ -5193,7 +5208,7 @@ Sample violations found:
     async function handleUp(inp) {
       if (!inp.files[0]) return;
       const file = inp.files[0];
-      showToast(`📄 Processing ${file.name} with Claude AI...`, 'var(--purple2)');
+      showToast(`📄 Processing ${file.name} with ORAI AI...`, 'var(--purple2)');
 
       // Read file as base64
       const reader = new FileReader();
@@ -5208,12 +5223,12 @@ Sample violations found:
         txtEl.innerHTML = '<span class="tw-cursor"></span>';
 
         try {
-          // Gemini supports text prompts; for PDFs, send the filename + ask AI to extract rules
+          // OpenRouter supports text prompts; for PDFs, send the filename + ask AI to extract rules
           const prompt = isPDF
             ? `You are a compliance AI. The user uploaded a PDF policy document named "${file.name}". Extract all actionable compliance rules. For each rule, provide: Rule ID (e.g. POL-1), Category, Risk Level (CRITICAL/HIGH/MEDIUM/LOW), and the rule description. Format as a numbered list. Then provide a brief summary of the document's compliance scope. Keep response under 500 words.`
             : `You are a compliance AI. The user uploaded a file named "${file.name}". This appears to be a text/markdown policy document. Extract all actionable compliance rules from this content. For each rule, provide: Rule ID (e.g. POL-1), Category, Risk Level (CRITICAL/HIGH/MEDIUM/LOW), and the rule description. Format as a numbered list. Then provide a brief summary. Keep response under 500 words.`;
 
-          const fullText = await callGemini(prompt);
+          const fullText = await callOpenRouter(prompt, '', 1000, 0.2);
 
           // Typewriter effect
           txtEl.innerHTML = '';
@@ -5233,7 +5248,7 @@ Sample violations found:
           }, 10);
 
         } catch(err) {
-          console.error('[PolicyPilot] Gemini PDF extraction unavailable, using local rule parser:', err?.message);
+          console.error('[PolicyPilot] OpenRouter PDF extraction unavailable, using local rule parser:', err?.message);
           // Generate realistic rule extraction output based on filename
           const fname = file.name.toLowerCase();
           const isGDPR = fname.includes('gdpr') || fname.includes('privacy');
@@ -5302,7 +5317,7 @@ ${rulesHtml}<strong>Document Summary:</strong> This policy establishes ${ruleCou
       div.style.cssText = 'border-color:rgba(167,139,250,0.25);background:rgba(124,58,237,0.03)';
       div.innerHTML = `<div class="ficon">${icon}</div><div style="flex:1"><div class="fname" style="color:var(--purple2)">${fname} <span style="font-size:10px;background:rgba(124,58,237,0.1);border:1px solid rgba(167,139,250,0.3);color:var(--purple2);border-radius:4px;padding:1px 6px;margin-left:6px;font-family:'JetBrains Mono',monospace">AI Parsed</span></div><div class="fmeta">${(Math.random()*3+0.5).toFixed(1)} MB · Uploaded ${ts}</div></div><div class="fstatus"><span class="frules" style="color:var(--purple2);border-color:rgba(167,139,250,0.3)">✓ ~12 rules</span></div>`;
       flist.appendChild(div);
-      showToast(`✓ ${fname} — rules extracted by Claude AI`, 'var(--green)');
+      showToast(`✓ ${fname} — rules extracted by ORAI AI`, 'var(--green)');
     }
 
     const uz = document.querySelector('.upzone');
@@ -5664,7 +5679,7 @@ DATABASES: compliance_db (PostgreSQL, connected), hr_mysql (MySQL, connected), a
 Answer compliance questions concisely and helpfully. Format responses with clear structure when needed. Keep responses under 200 words.`;
 
       try {
-        const reply = await callGeminiChat(chatHistory, systemPrompt);
+        const reply = await callOpenRouterChat(chatHistory, systemPrompt, 800, 0.4);
         chatHistory.push({ role: 'assistant', content: reply });
         updateChatMsg(loadId, reply);
       } catch(e) {
@@ -5754,7 +5769,7 @@ Ask me about specific violations, policies, or remediation steps for more detail
         }
         chatHistory.push({ role: 'assistant', content: fallbackReply });
         // Silently use fallback — animate with typewriter so it looks like live AI generation
-        console.error('[PolicyPilot] Gemini API unavailable, using local inference:', e?.message);
+        console.error('[PolicyPilot] OpenRouter API unavailable, using local inference:', e?.message);
         typewriterChat(loadId, fallbackReply, 12);
       }
     }
@@ -5823,8 +5838,8 @@ Ask me about specific violations, policies, or remediation steps for more detail
       txtEl.innerHTML = '<span class="tw-cursor"></span>';
 
       try {
-        // Using Gemini AI
-        const text = await callGemini(`Generate a concise executive compliance status report for a company's data policy agent dashboard. Use this data:
+        // Using OpenRouter AI
+        const text = await callOpenRouter(`Generate a concise executive compliance status report for a company's data policy agent dashboard. Use this data:
 
 Compliance Health: 94% (↑3% this week, trend improving over 7 scans: 88→85→90→87→91→92→94%)
 Active Violations: 17 (3 CRITICAL, 2 HIGH resolved this week, 8 total resolved)
@@ -5832,7 +5847,7 @@ Critical Violations: GDPR-12a (PII retention breach x3), GDPR-7b (unauthorized E
 Top Policies Violated: GDPR-12a (most frequent), AC-3c, IRD-5
 GDG Dataset Rules Active: 28 (Internal_Recommendation_Doc.md) - 2 active violations found
 
-Write a 3-paragraph executive summary covering: (1) overall compliance posture and trend, (2) top 3 risks requiring immediate action with specific record IDs, (3) recommended compliance roadmap for the next 30 days. Be specific and authoritative.`);
+Write a 3-paragraph executive summary covering: (1) overall compliance posture and trend, (2) top 3 risks requiring immediate action with specific record IDs, (3) recommended compliance roadmap for the next 30 days. Be specific and authoritative.`, '', 800, 0.4);
         let i = 0;
         txtEl.innerHTML = '';
         const ti = setInterval(() => {
@@ -5844,7 +5859,7 @@ Write a 3-paragraph executive summary covering: (1) overall compliance posture a
           }
         }, 8);
       } catch(e) {
-        console.error('[PolicyPilot] Gemini API unavailable for summary, using local analysis:', e?.message);
+        console.error('[PolicyPilot] OpenRouter API unavailable for summary, using local analysis:', e?.message);
         const fallbackHtml = `<strong style="color:var(--cyan)">Compliance Status — Feb 2026</strong><br><br>
 PolicyPilot has completed 7 consecutive scans showing a <strong>+6% improvement</strong> in compliance health, now at <strong>94%</strong>. The upward trend demonstrates that systematic monitoring and proactive remediation are producing measurable results.<br><br>
 <strong>Top 3 Risks Requiring Immediate Action:</strong><br>
@@ -6011,7 +6026,17 @@ PolicyPilot has completed 7 consecutive scans showing a <strong>+6% improvement<
       const dbCtx = dbs.map(d => `${d.name} (${d.type}): score=${d.score}%, violations=${d.violations.length} [${d.critical} CRITICAL, ${d.high} HIGH, ${d.medium} MEDIUM], status=${d.status}, records=${d.totalRecords.toLocaleString()}`).join('\n');
 
       try {
-        const text = await callGemini(`You are an enterprise data compliance analyst. Analyze these database compliance metrics and provide a structured report:\n\n${dbCtx}\n\nProvide:\n1. Overall fleet status in 2 sentences\n2. For each database: risk level, top concern, immediate action needed\n3. Priority ranking of which databases to fix first\n4. Specific SQL/NoSQL remediation approach for the highest-risk items\n\nBe specific, technical, and actionable. Max 300 words.`);
+        const text = await callOpenRouter(`You are an enterprise data compliance analyst. Analyze these database compliance metrics and provide a structured report:
+
+${dbCtx}
+
+Provide:
+1. Overall fleet status in 2 sentences
+2. For each database: risk level, top concern, immediate action needed
+3. Priority ranking of which databases to fix first
+4. Specific SQL/NoSQL remediation approach for the highest-risk items
+
+Be specific, technical, and actionable. Max 300 words.`, '', 600, 0.4);
         let i = 0;
         txtEl.innerHTML = '';
         const ti = setInterval(() => {
@@ -6037,7 +6062,7 @@ PolicyPilot has completed 7 consecutive scans showing a <strong>+6% improvement<
         const overallScore = Math.round(dbs.reduce((a,d)=>a+d.score,0)/dbs.length);
         const totalCrit = dbs.reduce((a,d)=>a+d.critical,0);
         const fallbackHtml = `<strong>Fleet Overview:</strong> ${dbs.length} database${dbs.length>1?'s':''} analyzed. Average compliance score: <strong style="color:${overallScore>=85?'var(--green)':overallScore>=65?'var(--yellow)':'var(--red)'}">${overallScore}%</strong>. ${totalCrit > 0 ? `<strong style="color:var(--red)">${totalCrit} CRITICAL violation${totalCrit>1?'s':''}</strong> require immediate action.` : 'No critical violations detected.'}<br><br>${fallbackText}<strong>Priority Ranking:</strong> ${dbs.sort((a,b)=>a.score-b.score).map(d=>`${d.icon} ${d.name} (${d.score}%)`).join(' → ')} — remediate lowest scores first.`;
-        console.error('[PolicyPilot] Gemini DB analysis unavailable, using local analysis:', e?.message);
+        console.error('[PolicyPilot] OpenRouter DB analysis unavailable, using local analysis:', e?.message);
         typewriterAnimate(txtEl, fallbackHtml, 6, () => {});
       }
       btn.textContent = '🤖 AI Analysis →';
@@ -6102,11 +6127,11 @@ PolicyPilot has completed 7 consecutive scans showing a <strong>+6% improvement<
       const query = v?.query || '-- query will be generated';
 
       try {
-        const text = await callGemini(`You are an autonomous compliance fix AI. Diagnose this violation and explain what queries will fix it:
+        const text = await callOpenRouter(`You are an autonomous compliance fix AI. Diagnose this violation and explain what queries will fix it:
 
 Database: ${dbName} (${db?.type||'SQL'})
 Record ID: ${recordId}
-Entity: ${entity}  
+Entity: ${entity}
 Policy Violated: ${policy}
 Risk Level: ${risk}
 Fix Type: ${fixType}
@@ -6119,7 +6144,7 @@ Provide:
 3. Side effects or precautions to note
 4. Estimated fix duration
 
-Be technical and specific. Max 150 words.`);
+Be technical and specific. Max 150 words.`, '', 300, 0.3);
         let i=0;
         diagEl.innerHTML='';
         const ti = setInterval(()=>{
@@ -6195,7 +6220,7 @@ Be technical and specific. Max 150 words.`);
         };
         const d = diagnosisMap[fixType] || diagnosisMap.generic;
         let i = 0;
-        console.error('[PolicyPilot] Gemini fix diagnosis unavailable, using local engine:', e?.message);
+        console.error('[PolicyPilot] OpenRouter fix diagnosis unavailable, using local engine:', e?.message);
         const diagText = `<strong>Root Cause:</strong> ${d.cause}
 
 <strong>Fix Plan:</strong> ${d.plan}
